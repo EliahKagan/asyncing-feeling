@@ -1,3 +1,5 @@
+# NOTE: Most C# code in this project is in LINQPad queries only.
+#       So Infer# is actually scanning only a tiny fraction of the code.
 name: Infer#
 
 on:
