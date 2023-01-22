@@ -3,7 +3,7 @@
   <Namespace>System.Threading.Tasks</Namespace>
 </Query>
 
-// Copyright (C) 2020 Eliah Kagan <degeneracypressure@gmail.com>
+// Copyright (C) 2020, 2023 Eliah Kagan <degeneracypressure@gmail.com>
 //
 // Permission to use, copy, modify, and/or distribute this software for any
 // purpose with or without fee is hereby granted.
@@ -16,9 +16,8 @@
 // OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 // CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-const string tvtropesPrefix = "https://tvtropes.org/pmwiki/pmwiki.php/Main/";
 const string allthetropesPrefix = "https://allthetropes.org/wiki/";
-const string theotheronePrefix = "https://allthetropes.fandom.com/wiki/";
+const string tropediaPrefix = "https://tropedia.fandom.com/wiki/";
 
 Func<string[], string> snakeCase = words => string.Join("_", words);
 Func<string[], string> camelCase = words => string.Join("", words);
@@ -47,15 +46,11 @@ Func<string, string, Task> report = async (url, description) => {
     Console.WriteLine($"Search term \"{term}\" {summary} on {description}.");
 };
 
-var tvtropes = report(tvtropesPrefix + camelCase(titleWords),
-                      "TV Tropes");
-
 var allthetropes = report(allthetropesPrefix + snakeCase(titleWords),
                           "All The Tropes");
 
-var theotherone = report(theotheronePrefix + snakeCase(titleWords),
+var theotherone = report(tropediaPrefix + snakeCase(titleWords),
                          "All The Tropes (Fandom)");
 
-await tvtropes;
 await allthetropes;
 await theotherone;

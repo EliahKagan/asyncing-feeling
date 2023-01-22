@@ -15,6 +15,8 @@
 // OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 // CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+#nullable enable
+
 static int Finish(Stopwatch timer)
 {
     timer.Stop();
@@ -23,7 +25,7 @@ static int Finish(Stopwatch timer)
 
 const int maxDelay = 256;
 
-var producerDelays = new Random();
+Random producerDelays = new();
 
 async IAsyncEnumerable<(int value, int delay)> ProduceAsync(int count)
 {

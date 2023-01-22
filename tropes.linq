@@ -3,7 +3,7 @@
   <Namespace>System.Threading.Tasks</Namespace>
 </Query>
 
-// Copyright (C) 2020 Eliah Kagan <degeneracypressure@gmail.com>
+// Copyright (C) 2020, 2023 Eliah Kagan <degeneracypressure@gmail.com>
 //
 // Permission to use, copy, modify, and/or distribute this software for any
 // purpose with or without fee is hereby granted.
@@ -16,12 +16,12 @@
 // OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
 // CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-const string tvtropesPrefix = "https://tvtropes.org/pmwiki/pmwiki.php/Main/";
+#nullable enable
+
 const string allthetropesPrefix = "https://allthetropes.org/wiki/";
-const string theotheronePrefix = "https://allthetropes.fandom.com/wiki/";
+const string tropediaPrefix = "https://tropedia.fandom.com/wiki/";
 
 static string SnakeCase(string[] words) => string.Join("_", words);
-static string CamelCase(string[] words) => string.Join("", words);
 
 var title = "Badass Decay";
 
@@ -49,15 +49,11 @@ async Task Report(string url, string description)
     Console.WriteLine($"Search term \"{term}\" {summary} on {description}.");
 };
 
-var tvtropes = Report(tvtropesPrefix + CamelCase(titleWords),
-                      "TV Tropes");
-
 var allthetropes = Report(allthetropesPrefix + SnakeCase(titleWords),
                           "All The Tropes");
 
-var theotherone = Report(theotheronePrefix + SnakeCase(titleWords),
-                         "All The Tropes (Fandom)");
+var tropedia = Report(tropediaPrefix + SnakeCase(titleWords),
+                      "Tropedia");
 
-await tvtropes;
 await allthetropes;
-await theotherone;
+await tropedia;
